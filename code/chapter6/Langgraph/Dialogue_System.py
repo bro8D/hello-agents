@@ -28,11 +28,11 @@ class SearchState(TypedDict):
     final_answer: str      # 最终答案
     step: str             # 当前步骤
 
-# 初始化模型和Tavily客户端
+# 初始化 DeepSeek 模型 (直接利用兼容 OpenAI 协议)
 llm = ChatOpenAI(
-    model=os.getenv("LLM_MODEL_ID", "gpt-4o-mini"),
-    api_key=os.getenv("LLM_API_KEY"),
-    base_url=os.getenv("LLM_BASE_URL", "https://api.openai.com/v1"),
+    model=os.getenv("LLM_MODEL_ID", "deepseek-chat"),  # 默认使用 deepseek-chat
+    api_key=os.getenv("DEEPSEEK_API_KEY") or os.getenv("LLM_API_KEY"),
+    base_url=os.getenv("LLM_BASE_URL", "https://api.deepseek.com"),
     temperature=0.7
 )
 
